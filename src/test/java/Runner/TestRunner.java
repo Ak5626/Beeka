@@ -27,10 +27,14 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     @BeforeTest
     public void setup() throws Exception {
         driver = DriverFactory.initDriver("chrome");
-        driver.get(utility.getValue("eng_url"));
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        if(utility.getValue("env").equalsIgnoreCase("prod")) {
+            driver.get(utility.getValue("eng_url"));
+            driver.manage().window().maximize();
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        }else{
+            System.out.println("No environment found");
+        }
 
     }
 

@@ -58,33 +58,34 @@ public class homepage {
     }
 
     public boolean validateSwitchLanguage() {
+
         utility.waitCond(driver, driver.findElement(headerLangOpt));
         driver.findElement(headerLangOpt).click();
-        if (langConfirmation.equalsIgnoreCase("eng")) {
-            try {
-                driver.findElement(changeOptToDutch).click();
-                utility.waitCond(driver, driver.findElement(dutchLang));
-                boolean lang = utility.ElePresent(driver.findElement(dutchLang));
-                System.out.println("Switched to Dutch Language");
-                return lang;
-            } catch (Exception e) {
-                return false;
-            }
+        try {
+            By changeLang;
+            By verifyLang;
+            String message;
 
-        } else if (langConfirmation.equalsIgnoreCase("dutch")) {
-            try {
-                driver.findElement(changeOptToEng).click();
-                utility.waitCond(driver, driver.findElement(engLang));
-                boolean lang = utility.ElePresent(driver.findElement(engLang));
-                System.out.println("Switched to English Language");
-                return lang;
-            } catch (Exception e) {
+            if (langConfirmation.equalsIgnoreCase("eng")) {
+                changeLang = changeOptToDutch;
+                verifyLang = dutchLang;
+                message = "Switched to Dutch Language";
+            } else if (langConfirmation.equalsIgnoreCase("dutch")) {
+                changeLang = changeOptToEng;
+                verifyLang = engLang;
+                message = "Switched to English Language";
+
+            } else {
                 return false;
             }
-        } else {
+            driver.findElement(changeLang).click();
+            utility.waitCond(driver, driver.findElement(verifyLang));
+            boolean lang = utility.ElePresent(driver.findElement(verifyLang));
+            System.out.println(message);
+            return lang;
+        } catch (Exception e) {
             return false;
         }
-
     }
 
     public boolean validateLogoFooter() {

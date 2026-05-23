@@ -112,6 +112,7 @@ public class Categorypage {
 
 
     public boolean resetFilter(String category){
+        driver.navigate().refresh();
         List<WebElement> remove = driver.findElements(resetFilter);
         for(WebElement e : remove){
             e.click();

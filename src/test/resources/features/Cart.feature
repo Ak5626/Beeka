@@ -11,12 +11,11 @@ Feature: Cart Page validation
   @Validate_CartPage_Scenario2
   Scenario Outline: Choose Cart and unselect Cart
     Given Navigate to homepage
-    When  Homepage gets loaded click on main Cart "<mainCart>"
-    And   Choose any one product set "<product>"
-    Then  Remove filtered Cart and validate checkbox is unchecked "<subCart>"
+    When  Homepage gets loaded click cart option on any product "<product>" "<indexforcartoption>"
+    And   Validate option should be displayed for select diameters of products "<indexfordiameter>" and add to cart option should be shown
     Examples:
-      |mainCart  |product|subCart|
-      |Cookware|Frying pans|Frying pans|
+      |product|subCart|indexforcartoption|indexfordiameter|
+      |Chef Frying pan|Frying pans|0|0                        |
 
   @Validate_CartPage_Scenario3
   Scenario Outline: Choose Cart and unselect Cart

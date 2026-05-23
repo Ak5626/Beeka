@@ -3,7 +3,9 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import utils.Waitutils;
 import utils.utility;
 
 
@@ -29,9 +31,9 @@ public class homepage {
 
 
     public void validateHomepage() {
-        utility.waitCond(driver, driver.findElement(acceptCookies));
+        Waitutils.waitCond(driver, driver.findElement(acceptCookies));
         driver.findElement(acceptCookies).click();
-        utility.waitCond(driver, driver.findElement(rejectPopUp));
+        Waitutils.waitCond(driver, driver.findElement(rejectPopUp));
         driver.findElement(rejectPopUp).click();
         try {
             if (utility.ElePresent(driver.findElement(engLang))) {
@@ -59,7 +61,7 @@ public class homepage {
 
     public boolean validateSwitchLanguage() {
 
-        utility.waitCond(driver, driver.findElement(headerLangOpt));
+        Waitutils.waitCond(driver, driver.findElement(headerLangOpt));
         driver.findElement(headerLangOpt).click();
         try {
             By changeLang;
@@ -79,7 +81,7 @@ public class homepage {
                 return false;
             }
             driver.findElement(changeLang).click();
-            utility.waitCond(driver, driver.findElement(verifyLang));
+            Waitutils.waitCond(driver, driver.findElement(verifyLang));
             boolean lang = utility.ElePresent(driver.findElement(verifyLang));
             System.out.println(message);
             return lang;
@@ -89,8 +91,7 @@ public class homepage {
     }
 
     public boolean validateLogoFooter() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", driver.findElement(footerLogo));
+        utility.jsExecutorForScroll(driver.findElement(footerLogo));
         logoVal = utility.ElePresent(driver.findElement(footerLogo));
         return logoVal;
     }

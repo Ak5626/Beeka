@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileReader;
@@ -53,6 +54,11 @@ public class utility {
         Actions act = new Actions(driver);
         act.moveToElement(element);
 
+    }
+
+    public static void selectOption(WebElement element,String index){
+        Select select = new Select(element);
+        select.selectByIndex(Integer.parseInt(index));
     }
 
 

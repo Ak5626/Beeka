@@ -22,6 +22,7 @@ public class Categorypage {
     private static final By countInGridPage = By.xpath( "//span[@id='ProductCountDesktop']");
     private static final By rejectPopUp = By.xpath(  "//div[@data-testid='modal-form-container']/button[@tabindex='0']");
     private static final By subCatFilter = By.xpath("//a[@class='button--filter']");
+    private static final By resetFilter = By.xpath("//a[@class='active-facets__button-remove' and @role='button']");
 
     public void chooseMainCat(String mainCat1){
         if(mainCat1.equalsIgnoreCase(mainCat)) {
@@ -86,39 +87,52 @@ public class Categorypage {
     }
 
     public boolean checkSelectedFilters(String category){
-        List<WebElement> lst =  driver.findElements(subCatFilter);
-        boolean select=false;
-        for(int i=0; i<lst.size();i++) {
-            String actual = lst.get(i).getText();
-            actual = actual.trim();
-            category = category.trim();
+        category = category.trim();
+        for (WebElement filter : driver.findElements(subCatFilter)) {
+            String actual = filter.getText().trim();
             if (actual.contains(category)) {
-                Waitutils.waitCond(driver, lst.get(i));
-                lst.get(i).click();
+                Waitutils.waitCond(driver, filter);
+                filter.click();
                 driver.navigate().refresh();
-                List<WebElement> lst1 = driver.findElements(selCategory);
-                for (WebElement categorylist : lst1) {
-                    Waitutils.waitCond(driver,categorylist);
-                    String actual1 = categorylist.getText();
-                    actual1 = actual1.trim();
-                    category = category.trim();
+                for (WebElement categoryList :
+                        driver.findElements(selCategory)) {
+                    String actual1 =
+                            categoryList.getText().trim();
                     if (actual1.equalsIgnoreCase(category)) {
-                        Waitutils.waitCond(driver, categorylist);
-                        select = !categorylist.isSelected();
-                        break;
+                        Waitutils.waitCond(driver, categoryList);
+                        return !categoryList.isSelected();
                     }
-
                 }
+
+                break;
+            }
+        }
+        return false;
+    }
+
+
+    public boolean resetFilter(String category){
+        List<WebElement> remove = driver.findElements(resetFilter);
+        for(WebElement e : remove){
+            e.click();
+            break;
+        }
+        driver.navigate().refresh();
+        List<WebElement> lst1 = driver.findElements(selCategory);
+        boolean select=false;
+        for (WebElement categorylist : lst1) {
+            Waitutils.waitCond(driver,categorylist);
+            String actual1 = categorylist.getText();
+            actual1 = actual1.trim();
+            category = category.trim();
+            if (actual1.equalsIgnoreCase(category)) {
+                Waitutils.waitCond(driver, categorylist);
+                select = !categorylist.isSelected();
                 break;
             }
 
         }
-
         return select;
-    }
-
-    public void removefilter(){
-
     }
 
 }

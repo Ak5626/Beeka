@@ -34,6 +34,13 @@ public class Categorystepdef {
     @Then("Remove filtered category and validate checkbox is unchecked {string}")
     public void removeFilteredCategoryAndValidateCheckboxIsUnchecked(String category) {
         cp.chooseCategory(category);
-        Assertions.booleanCheck(cp.checkSelectedFilters(category), "Category is not still checked even filtered category removed");
+        Assertions.booleanCheck(cp.checkSelectedFilters(category), "Category is not still unchecked even filtered category removed");
+    }
+
+    @Then("Click on Remove filter button and validate checkbox is unchecked {string}")
+    public void clickOnRemoveFilterButtonAndValidateCheckboxIsUnchecked(String category) {
+        cp.chooseCategory(category);
+        Assertions.booleanCheck(cp.resetFilter(category), "Category is not still unchecked even filtered category removed");
+
     }
 }

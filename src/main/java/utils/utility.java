@@ -1,5 +1,7 @@
 package utils;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -12,21 +14,34 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
+import static java.awt.SystemColor.window;
 import static pages.DriverFactory.driver;
 
 public class utility {
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    static JavascriptExecutor js = (JavascriptExecutor) driver;
 
-    public static String getValue(String key) throws IOException {
+    public static String getValue(String key) {
         Properties prop = new Properties();
-        FileReader f = new FileReader("./config.properties");
-        prop.load(f);
+        FileReader f = null;
+        try {
+             f =new FileReader("./config.properties");
+            prop.load(f);
+        }catch(Exception e){
+            System.out.println("No File found");
+        }
+
         return prop.getProperty(key);
     }
 
-    public static void waitCond(WebDriver driver,WebElement ele){
+   public static void jsExecutorForScroll(WebElement element){
 
-        wait.until(ExpectedConditions.visibilityOf(ele));
+       js.executeScript("arguments[0].scrollIntoView();",element);
+   }
+
+    public static void jsExecutorForScrollUsingAxis(int x ,int y){
+
+        js.executeScript("window.scrollBy(arguments[0], arguments[1])",x,y);
     }
 
     public static boolean ElePresent(WebElement ele){

@@ -4,17 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileReader;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.Properties;
-
-import static java.awt.SystemColor.window;
 import static pages.DriverFactory.driver;
 
 public class utility {
@@ -50,6 +47,12 @@ public class utility {
       } catch (NoSuchElementException e) {
           return false;
       }
+    }
+
+    public  static void action(WebElement element){
+        Actions act = new Actions(driver);
+        act.moveToElement(element);
+
     }
 
 

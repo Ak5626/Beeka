@@ -1,9 +1,14 @@
 package utils;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 
+import java.time.Duration;
+
+import static pages.DriverFactory.driver;
 import static utils.utility.wait;
 
 public class Waitutils {
@@ -17,4 +22,14 @@ public class Waitutils {
 
         wait.until(ExpectedConditions.elementToBeClickable(ele));
     }
+
+    public static void fluentWait(WebElement ele){
+        FluentWait<WebDriver> flWait =
+                new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+        flWait.until(driver -> ele);
+    }
+
 }

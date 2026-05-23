@@ -1,5 +1,6 @@
 package Stepdefs;
 
+import Utils.Assertions;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -17,11 +18,15 @@ public class Categorystepdef {
 
     @And("Choose any one product set {string}")
     public void chooseAnyOneProductSet(String product) {
-
+            cp.chooseProduct(product);
     }
 
-    @Then("Choose select one category {string} and validate count between choosen one and product grid")
-    public void chooseSelectOneCategoryAndValidateCountBetweenChoosenOneAndProductGrid(String arg0) {
+    @Then("Choose one category {string} and validate count between choosen one and product grid with index {string}")
+    public void chooseSelectOneCategoryAndValidateCountBetweenChoosenOneAndProductGrid(String category,String index) {
+           cp.chooseCategory(category);
+           String totalCountInProduct =  cp.checkCountInCategory(category,index);
+           String totalCountInGrid = cp.checkCountInGrid();
+           Assertions.booleanCheck(totalCountInGrid.contains(totalCountInProduct),"Count between selected category and count in product grid is not matched");
 
     }
 

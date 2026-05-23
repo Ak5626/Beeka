@@ -6,8 +6,8 @@ Feature: Category Page validation
     Given Navigate to homepage
     When  Homepage gets loaded click on main category "<maincategory>"
     And   Choose any one product set "<product>"
-    Then  Choose select one category "<category>" and validate count between choosen one and product grid
+    Then  Choose one category "<subCategory>" and validate count between choosen one and product grid with index "<indexForChoosingCount>"
     Examples:
-      |maincategory  |product|category|
-      |Cookware|€65,00|Sleek lines, ergonomic handles and high quality materials|
+      |maincategory  |product|subCategory|indexForChoosingCount|
+      |Cookware|Frying pans|Frying pans|0                      |
 

@@ -9,11 +9,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import pages.Productpage;
 
+import java.io.IOException;
+
 import static pages.DriverFactory.driver;
 
 public class Productstepdef {
 
     Productpage pg = new Productpage();
+
+    public Productstepdef() throws IOException {
+    }
 
     @When("Homepage loaded choose a product")
     public void homepageLoadedMovetoAProduct() {
@@ -26,14 +31,15 @@ public class Productstepdef {
          Assertions.booleanCheck(imageDisplayed,"Image is not displayed");
     }
 
-    @And("Validate Product name price and description")
-    public void validateProductNamePriceAndDescription() {
+    @And("Validate Product name {string} price {string} and description {string}")
+    public void validateProductNamePriceAndDescription(String prdName,String prdPrice,String prdDescp) {
         String title = pg.checkProductTitle();
-        Assertions.comaprisonCheck(title,"CHEF FRYING PAN");
+        Assertions.comaprisonCheck(title,prdName);
         String price = pg.checkPrice();
-        Assertions.comaprisonCheck(price,"€65,00");
+        Assertions.comaprisonCheck(price,prdPrice);
         String actualDesc= pg.checkDescription();
-        Assertions.booleanCheck(actualDesc.contains("Sleek lines, ergonomic handles and high quality materials"),"Keywords are missing in description");
+        Assertions.booleanCheck(actualDesc.contains(prdDescp),"Keywords are missing in description");
+
     }
 
 
@@ -47,4 +53,8 @@ public class Productstepdef {
         String price = pg.checkPrice();
         Assertions.comaprisonCheck(price,"€65,00");
     }
+
+
+
+
 }

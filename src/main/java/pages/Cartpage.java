@@ -12,6 +12,7 @@ import static pages.DriverFactory.driver;
 public class Cartpage {
 
     private String beforeAddingQuantity=null;
+    private String productName= null;
     private static String nameOfSelectOption = utility.getValue("nameOfSelectOption");
     private static final By cartOption = By.xpath("//li[@class='aside-nav__list-item']/a[@data-modal-id='cart-modal']");
     private static final By cartMessage = By.xpath("//div[@id='cart-container']/p");
@@ -27,6 +28,8 @@ public class Cartpage {
     private static final By productPriceInCart = By.xpath("//div[@class='cart__end']/div/strong");
     private static final By productQuantityInCart = By.xpath("//div[@class='cart__end']/div[2]/div/div/div/input");
     private static final By increaseQuantity = By.xpath("//div[@class='cart__end']/div[2]/div/div/div/button[2]");
+    private static final By deleteProduct = By.xpath("//div[@class='hide large--show']/div/a/span");
+    private static final By cartEmpty = By.xpath("//div[@class='container js-cart-container']/p[1]");
 
     public void clickCartOption(){
         Waitutils.waitCond(driver,driver.findElement(cartOption));
@@ -42,10 +45,9 @@ public class Cartpage {
         driver.findElement(continueShopping).click();
     }
 
-    public void goToProduct(String Product,String index) {
+    public void goToProduct(String Product) {
         driver.navigate().refresh();
         utility.jsExecutorForScrollUsingAxis(0, 1500);
-        int i = Integer.parseInt(index);
         List<WebElement> products = driver.findElements(goToProduct);
         Product = Product.toLowerCase().trim().replaceAll(" ","");
         String actualPrd = null;
@@ -80,6 +82,7 @@ public class Cartpage {
         }
 
         public String productName(){
+              productName = driver.findElement(productInCart).getText();
              return driver.findElement(productInCart).getText();
         }
 
@@ -99,7 +102,25 @@ public class Cartpage {
         public void increaseQuantity(){
              driver.findElement(increaseQuantity).click();
              Waitutils.waitCondForInvisibleText(productPriceInCart,beforeAddingQuantity);
-             //driver.navigate().refresh();
+        }
+
+        public void deleteProduct() {
+            driver.findElement(deleteProduct).click();
+            try {
+                if (driver.findElement(deleteProduct).isDisplayed()) {
+                    driver.findElement(deleteProduct).click();
+
+                }
+            } catch (Exception e) {
+                System.out.println("Proceed to next step");
+
+            }
+        }
+
+        public String noProductShown(){
+            driver.navigate().refresh();
+            Waitutils.waitCond(driver,driver.findElement(cartEmpty));
+            return driver.findElement(cartEmpty).getText();
         }
 
 

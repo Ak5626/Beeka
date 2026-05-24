@@ -29,7 +29,7 @@ public class Cartstepdef {
 
     @When("Homepage gets loaded click cart option on any product {string} {string}")
     public void homepageGetsLoadedClickCartOptionOnAnyProduct(String product,String index) {
-        cart.goToProduct(product,index);
+        cart.goToProduct(product);
     }
 
     @And("Validate option should be displayed for select diameters of products {string} and add to cart option should be shown")
@@ -54,6 +54,25 @@ public class Cartstepdef {
         Assertions.comaprisonCheck(cart.productQuantity(),increaseQuantity);
         Assertions.booleanCheck(cart.productPrice().contains(increasedPrice),"Price is not matched with expected value");
 
+    }
+
+    @Then("select product {string} variant {string} and go to cart page")
+    public void selectProductAndGoToCartPage(String product,String input) {
+        cart.goToProduct(product);
+        cart.selectDiameterAndClickQuickAddOption(input);
+        cart.clickOnViewCart();
+
+    }
+
+    @And("Delete the product")
+    public void deleteTheProduct() {
+         cart.deleteProduct();
+
+    }
+
+    @Then("Validate product should be removed {string}")
+    public void validateProductShouldBeRemoved(String message) {
+       Assertions.comaprisonCheck(cart.noProductShown(),message);
     }
 }
 

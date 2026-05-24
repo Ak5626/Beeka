@@ -20,11 +20,10 @@ public class DriverFactory {
                         options.addArguments("--no-sandbox");
                         options.addArguments("--disable-dev-shm-usage");
                         options.addArguments("--window-size=1920,1080");
-                    }else {
-                        driver = new ChromeDriver();
-                        break;
-                    }
 
+                    }
+                        driver = new ChromeDriver(options);
+                        break;
                 case "firefox":
                     driver = new FirefoxDriver();
                     break;

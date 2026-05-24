@@ -1,5 +1,6 @@
 package utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,13 @@ public class Waitutils {
     public static void waitCondForElementToClick(WebDriver driver, WebElement ele){
 
         wait.until(ExpectedConditions.elementToBeClickable(ele));
+
+    }
+
+    public static void waitCondForInvisibleText(By locator,String text){
+
+        wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text));
+
     }
 
     public static void fluentWait(WebElement ele){

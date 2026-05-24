@@ -76,13 +76,12 @@ mvn test
 Provide the required tag in the @CucumberOptions annotation
 Examples - @Validate_Searchfield_Scenario1
 Run the TestRunner class
-![img.png](img.png)
+![TestRunner.jpeg](Screenshots/TestRunner.jpeg)
 
 2. Feature file
    Open the desired feature file
    Copy the tags and place it in test runner for execution
-![img_1.png](img_1.png)
-
+![Featurefile.jpeg](Screenshots/Featurefile.jpeg)
 
 **6.Cucumber Report**
 Report generated at:

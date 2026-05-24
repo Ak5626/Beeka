@@ -1,8 +1,9 @@
 Beka-Ware Automation Framework
 
 **1.Overview**
-BekaWare is a UI automation framework built using Selenium WebDriver, Cucumber BDD, TestNG, and Maven. The framework follows the Page Object Model (POM) design pattern for better maintainability, scalability, and readability.
-The project is designed to automate end-to-end web application test scenarios including:
+
+* BekaWare is a UI automation framework built using Selenium WebDriver, Cucumber BDD, TestNG, and Maven. The framework follows the Page Object Model (POM) design pattern for better maintainability, scalability, and readability.
+* The project is designed to automate end-to-end web application.
 
 Website URL - www.beka-cookware.com/enite
 
@@ -79,12 +80,12 @@ Run the TestRunner class
 ![TestRunner.jpeg](Screenshots/TestRunner.jpeg)
 
 2. Feature file
-   Open the desired feature file
-   Copy the tags and place it in test runner for execution
+Open the desired feature file
+Copy the tags and place it in test runner for execution
 ![Featurefile.jpeg](Screenshots/Featurefile.jpeg)
 
 **6.Cucumber Report**
-Report generated at:
+1. Report generated at:
 target/cucumber-report.html
 
 **7.Browser Configuration**

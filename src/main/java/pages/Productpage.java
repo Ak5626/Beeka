@@ -1,15 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import utils.Waitutils;
 import utils.utility;
 
 import java.io.IOException;
-import java.util.List;
 
-import static pages.DriverFactory.driver;
+import static utils.DriverFactory.driver;
 import static pages.homepage.*;
 
 public class Productpage {

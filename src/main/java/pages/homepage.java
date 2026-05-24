@@ -1,15 +1,11 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import utils.Waitutils;
 import utils.utility;
 
 
-import static pages.DriverFactory.driver;
+import static utils.DriverFactory.driver;
 
 
 public class homepage {

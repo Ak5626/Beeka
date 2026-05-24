@@ -1,17 +1,12 @@
 package Stepdefs;
 
 import Utils.Assertions;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import pages.Productpage;
 
 import java.io.IOException;
-
-import static pages.DriverFactory.driver;
 
 public class Productstepdef {
 

@@ -1,16 +1,21 @@
 package Runner;
 
 import Utils.Assertions;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
-import pages.DriverFactory;
+import utils.DriverFactory;
 import utils.utility;
 
 import java.time.Duration;
 
-import static pages.DriverFactory.driver;
+import static utils.DriverFactory.driver;
 
 
 
@@ -19,30 +24,9 @@ import static pages.DriverFactory.driver;
             glue = "Stepdefs",
             plugin = {"pretty", "html:target/cucumber-report.html"},
 
-            tags= "@Validate_ProductPage_Secnario2")
+            tags= "@Validate_Searchfield_Scenario1 or @Validate_Searchfield_Scenario2")
 
 public class TestRunner extends AbstractTestNGCucumberTests {
-
-
-    @BeforeTest
-    public void setup() throws Exception {
-        driver = DriverFactory.initDriver("chrome");
-        if(utility.getValue("env").equalsIgnoreCase("prod")) {
-            driver.get(utility.getValue("eng_url"));
-            driver.manage().window().maximize();
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        }else{
-            System.out.println("No environment found");
-        }
-
-    }
-
-    @AfterTest
-    public void tearDown(){
-        Assertions.assertAll();
-        driver.quit();
-    }
 
 
 }

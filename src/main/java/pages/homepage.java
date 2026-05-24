@@ -14,7 +14,6 @@ public class homepage {
     public boolean logoVal;
     private static final By acceptCookies = By.xpath("//button[contains(text(),'Cookies accepteren')]");
     private static final By logo = By.xpath("//img[@class='logo-desktop']");
-    // private static final By langOptions = By.xpath("//img[@class='logo-desktop']");
     private static final By eng = By.xpath("//a[@lang='en' and @data-value='en']");
     private static final By dutch = By.xpath("//a[@lang='nl' and @data-value='nl']");
     private static final By rejectPopUp = By.xpath("//button[@type='button' and @class='modal__close | js-modal-close']");
@@ -24,13 +23,15 @@ public class homepage {
     public static final By headerLangOpt = By.xpath("//li[@class='top-nav__list-item top-nav__localisation']/form");
     public static final By changeOptToDutch = By.xpath("//ul[@id='lang-list']/li/a[@data-value='nl']");
     public static final By changeOptToEng = By.xpath("//ul[@id='lang-list']/li/a[@data-value='en']");
-
+    private static final By rejectPopUp1 = By.xpath("//button[@aria-label='Close dialog']");
 
     public void validateHomepage() {
         Waitutils.waitCond(driver, driver.findElement(acceptCookies));
         driver.findElement(acceptCookies).click();
         Waitutils.waitCond(driver, driver.findElement(rejectPopUp));
         driver.findElement(rejectPopUp).click();
+        Waitutils.waitCond(driver, driver.findElement(rejectPopUp1));
+        driver.findElement(rejectPopUp1).click();
         try {
             if (utility.ElePresent(driver.findElement(engLang))) {
                 System.out.println("Homepage is loaded with Language \"English\"");

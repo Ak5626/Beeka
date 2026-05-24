@@ -16,6 +16,7 @@ public class Searchpage {
     private static final By searchField = By.xpath("//button[@data-modal-id='search-modal']");
     private static final By searchBar = By.xpath("//input[@type='search']");
     private static final By searchResults = By.xpath("//div[@class='search-results-wrapper']");
+    private static final By searchresultsNotFound=By.xpath("//div[@class='search-results-wrapper']/div/div/div/h2/a");
 
     public void searchProduct(String product){
         driver.findElement(searchField).click();
@@ -32,5 +33,20 @@ public class Searchpage {
 
     public boolean searchResults(){
         return driver.findElements(searchResults).size() > 1;
+    }
+
+    public boolean searchResultsNotFound(String product){
+        List<WebElement> search = driver.findElements(searchresultsNotFound);
+        int textFound=0;
+        int noText=0;
+        for(WebElement e : search){
+            if(e.getText().contains(product)){
+                textFound++;
+            }
+            else{
+                noText++;
+            }
+        }
+        return textFound==0;
     }
 }

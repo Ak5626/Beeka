@@ -9,3 +9,13 @@ Feature: Search tab validation
    Examples:
       |product|
       |Chef Frying pan|
+
+  @Validate_Searchfield_Scenario2
+  Scenario Outline: Search invalid product and validate results
+    Given Navigate to homepage
+    When  Homepage loaded click on search tab and search any valid product "<product>"
+    Then  Validate product categories should not be visible "<product>"
+
+    Examples:
+      |product|
+      |Shoe|

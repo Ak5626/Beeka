@@ -11,6 +11,7 @@ import static pages.DriverFactory.driver;
 
 public class Cartpage {
 
+    private String beforeAddingQuantity=null;
     private static String nameOfSelectOption = utility.getValue("nameOfSelectOption");
     private static final By cartOption = By.xpath("//li[@class='aside-nav__list-item']/a[@data-modal-id='cart-modal']");
     private static final By cartMessage = By.xpath("//div[@id='cart-container']/p");
@@ -25,6 +26,7 @@ public class Cartpage {
     private static final By productVariant = By.xpath("//span[@class='cart__item-variant-title']");
     private static final By productPriceInCart = By.xpath("//div[@class='cart__end']/div/strong");
     private static final By productQuantityInCart = By.xpath("//div[@class='cart__end']/div[2]/div/div/div/input");
+    private static final By increaseQuantity = By.xpath("//div[@class='cart__end']/div[2]/div/div/div/button[2]");
 
     public void clickCartOption(){
         Waitutils.waitCond(driver,driver.findElement(cartOption));
@@ -86,12 +88,21 @@ public class Cartpage {
         }
 
         public String productPrice(){
+        beforeAddingQuantity = driver.findElement(productPriceInCart).getText();
         return driver.findElement(productPriceInCart).getText();
         }
 
         public String productQuantity(){
         return driver.findElement(productQuantityInCart).getAttribute("value");
         }
+
+        public void increaseQuantity(){
+             driver.findElement(increaseQuantity).click();
+             Waitutils.waitCondForInvisibleText(productPriceInCart,beforeAddingQuantity);
+             //driver.navigate().refresh();
+        }
+
+
 
 
 

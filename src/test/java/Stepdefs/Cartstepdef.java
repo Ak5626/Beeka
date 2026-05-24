@@ -45,6 +45,15 @@ public class Cartstepdef {
         Assertions.comaprisonCheck(cart.productVariant(),productVariant);
         Assertions.comaprisonCheck(cart.productQuantity(),productQuan);
         Assertions.booleanCheck(cart.productPrice().contains(productPrice),"Price is not matched with expected value");
+
+        }
+
+    @Then("Increase quantity in cart page and validate quantity value {string} and price {string}")
+    public void increaseQuantityInCartPageAndValidateQuantityValueAndPrice(String increaseQuantity,String increasedPrice) {
+        cart.increaseQuantity();
+        Assertions.comaprisonCheck(cart.productQuantity(),increaseQuantity);
+        Assertions.booleanCheck(cart.productPrice().contains(increasedPrice),"Price is not matched with expected value");
+
     }
 }
 

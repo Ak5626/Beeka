@@ -31,12 +31,18 @@ jobs:
         run: mvn clean install
 
       - name: Run Tests Headless
-        run: mvn test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1"
+        run: mvn test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1" -e
 
-      - name: Upload Reports
+      - name: Upload Surefire Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+
+      - name: Upload Cucumber Reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
-          path: |
-            target/
-            test-output/
+          path: target/

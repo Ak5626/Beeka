@@ -31,6 +31,8 @@ public class Hooks {
     @After
     public void tearDown(){
         Assertions.assertAll();
-        driver.quit();
+        if (DriverFactory.driver != null) {
+            driver.quit();
+        }
     }
 }

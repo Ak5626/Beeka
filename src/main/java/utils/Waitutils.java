@@ -31,6 +31,12 @@ public class Waitutils {
 
     }
 
+    public static void waitElementClickable(WebElement ele){
+
+        wait.until(ExpectedConditions.elementToBeClickable(ele));
+
+    }
+
     public static void fluentWait(WebElement ele){
         FluentWait<WebDriver> flWait =
                 new FluentWait<>(driver)

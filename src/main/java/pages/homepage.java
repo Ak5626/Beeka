@@ -26,11 +26,11 @@ public class homepage {
     private static final By rejectPopUp1 = By.xpath("//button[@aria-label='Close dialog']");
 
     public void validateHomepage() {
-        Waitutils.waitCond(driver, driver.findElement(acceptCookies));
+        Waitutils.waitCondForElementToClick(driver, driver.findElement(acceptCookies));
         driver.findElement(acceptCookies).click();
-        Waitutils.waitCond(driver, driver.findElement(rejectPopUp));
+        Waitutils.waitCondForElementToClick(driver, driver.findElement(rejectPopUp));
         driver.findElement(rejectPopUp).click();
-        Waitutils.waitCond(driver, driver.findElement(rejectPopUp1));
+        Waitutils.waitCondForElementToClick(driver, driver.findElement(rejectPopUp1));
         driver.findElement(rejectPopUp1).click();
         try {
             if (utility.ElePresent(driver.findElement(engLang))) {

@@ -19,6 +19,7 @@ public class Searchpage {
     private static final By searchresultsNotFound=By.xpath("//div[@class='search-results-wrapper']/div/div/div/h2/a");
 
     public void searchProduct(String product){
+        Waitutils.waitElementClickable(driver.findElement(searchField));
         driver.findElement(searchField).click();
         List<WebElement> src = driver.findElements(searchBar);
         for(WebElement e: src){

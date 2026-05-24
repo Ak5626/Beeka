@@ -6,13 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 import static utils.DriverFactory.driver;
-import static utils.utility.wait;
+
 
 public class Waitutils {
+
+    static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
     public static void waitCond(WebDriver driver, WebElement ele){
 

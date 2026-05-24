@@ -34,8 +34,6 @@ public class Categorypage {
     }
 
     public void chooseProduct(String product1){
-        Waitutils.waitCond(driver, driver.findElement(rejectPopUp));
-        driver.findElement(rejectPopUp).click();
         if(product1.equalsIgnoreCase(product)) {
               Waitutils.fluentWait(driver.findElement(product_name));
               utility.jsExecutorForScroll(driver.findElement(product_name));

@@ -14,7 +14,6 @@ import java.util.Properties;
 import static utils.DriverFactory.driver;
 
 public class utility {
-    static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     static JavascriptExecutor js = (JavascriptExecutor) driver;
 
     public static String getValue(String key) {

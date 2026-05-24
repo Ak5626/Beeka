@@ -12,7 +12,7 @@ import static pages.homepage.*;
 public class Productpage {
 
     private static String prdName = utility.getValue("product_name");
-    private static String prdTitleInDutch = utility.getValue("product_Title");
+    private static String prdTitleInDutch = utility.getValue("prdTitleInDutch");
     private static final By product = By.xpath("//a[@class='product-item__url' and @aria-label='" + prdName + "']");
     private static final By productImage = By.xpath("//div[@data-index='0']/div/picture/img");
     private static final By productTitle = By.xpath("//h1[@class='product__title']");
@@ -26,8 +26,6 @@ public class Productpage {
     }
 
     public void moveToProduct() {
-        Waitutils.waitCond(driver, driver.findElement(productPopUp));
-        driver.findElement(productPopUp).click();
         utility.jsExecutorForScrollUsingAxis(0,1500);
         Waitutils.waitCond(driver, driver.findElement(product));
         driver.findElement(product).click();

@@ -17,8 +17,13 @@ public class Searchstepdef {
 
     @Then("Validate product categories should be visible")
     public void validateProductCategoriesShouldBeVisible() {
-        Assertions.booleanCheck(sp.searchResults(),"Product results is not displayed");
+        Assertions.booleanCheck(sp.searchResults(),"Product results are not displayed");
     }
 
 
+    @Then("Validate product categories should not be visible {string}")
+    public void validateProductCategoriesShouldNotBeVisible(String product) {
+        Assertions.booleanCheck(sp.searchResultsNotFound(product),"Product results are displayed");
+
+    }
 }

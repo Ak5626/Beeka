@@ -31,7 +31,7 @@ jobs:
         run: mvn clean install
 
       - name: Run Tests Headless
-        run: mvn test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1" -e
+        run: mvn test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1" -X
 
       - name: Upload Surefire Reports
         if: always()

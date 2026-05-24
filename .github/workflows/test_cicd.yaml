@@ -25,13 +25,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '20'
-
-      - name: Build Project
-        run: mvn clean install
+          java-version: '17'
 
       - name: Run Tests Headless
-        run: mvn test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1" -X
+        run: mvn clean test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1" -e
 
       - name: Upload Surefire Reports
         if: always()

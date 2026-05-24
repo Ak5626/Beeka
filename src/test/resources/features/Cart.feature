@@ -38,3 +38,14 @@ Feature: Cart Page validation
       |product|indexforcartoption|indexfordiameter|quantity|variant|price|productInCart|increaseQuantity|increasePrice|
       |Chef Frying Pan|0|0|1                           |20 cm   | €65,00|Chef frying pan|  2         |€130,00      |
 
+  @Validate_CartPage_Scenario5
+  Scenario Outline: Remove product and validate cart page
+    Given Navigate to homepage
+    Then  select product "<product>" variant "<indexfordiameter>" and go to cart page
+    And   Delete the product
+    Then  Validate product should be removed "<message>"
+
+    Examples:
+      |product|indexfordiameter|message|
+      |Chef Frying Pan|0       |Your cart is currently empty.|
+

@@ -20,6 +20,11 @@ public class Cartpage {
     private static final By selectDiameter = By.id(nameOfSelectOption);
     private static final By quickAdd = By.xpath("//button[@type='submit']");
     private static final By rejectPopUp = By.xpath("//button[@aria-label='Close dialog']");
+    private static final By viewCart = By.xpath("//a[@class='button button--underline button--font-weight-bold button--update-cart']");
+    private static final By productInCart = By.xpath("//a[@class='cart__item-title']");
+    private static final By productVariant = By.xpath("//span[@class='cart__item-variant-title']");
+    private static final By productPriceInCart = By.xpath("//div[@class='cart__end']/div/strong");
+    private static final By productQuantityInCart = By.xpath("//div[@class='cart__end']/div[2]/div/div/div/input");
 
     public void clickCartOption(){
         Waitutils.waitCond(driver,driver.findElement(cartOption));
@@ -65,6 +70,27 @@ public class Cartpage {
                      driver.findElement(rejectPopUp).click();
                      break;
                  }
+        }
+
+        public void clickOnViewCart(){
+              Waitutils.waitCond(driver,driver.findElement(viewCart));
+              driver.findElement(viewCart).click();
+        }
+
+        public String productName(){
+             return driver.findElement(productInCart).getText();
+        }
+
+        public String productVariant(){
+        return driver.findElement(productVariant).getText();
+        }
+
+        public String productPrice(){
+        return driver.findElement(productPriceInCart).getText();
+        }
+
+        public String productQuantity(){
+        return driver.findElement(productQuantityInCart).getAttribute("value");
         }
 
 

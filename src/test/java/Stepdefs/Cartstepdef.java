@@ -36,5 +36,15 @@ public class Cartstepdef {
     public void validateOptionShouldBeDisplayedForSelectDiametersOfProductsAndAddToCartOptionShouldBeShown(String input) {
         cart.selectDiameterAndClickQuickAddOption(input);
     }
+
+
+    @Then("Click on view cart option and validate product name {string} quantity {string} variant {string} and price {string}")
+    public void clickOnViewCartOptionAndValidateProductNameQuantityVariantAndPrice(String productName, String productQuan, String productVariant, String productPrice) {
+        cart.clickOnViewCart();
+        Assertions.comaprisonCheck(cart.productName(),productName);
+        Assertions.comaprisonCheck(cart.productVariant(),productVariant);
+        Assertions.comaprisonCheck(cart.productQuantity(),productQuan);
+        Assertions.booleanCheck(cart.productPrice().contains(productPrice),"Price is not matched with expected value");
+    }
 }
 

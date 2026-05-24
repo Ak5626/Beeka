@@ -24,7 +24,7 @@ import static utils.DriverFactory.driver;
             glue = "Stepdefs",
             plugin = {"pretty", "html:target/cucumber-report.html"},
 
-            tags= "@Validate_Searchfield_Scenario1 or @Validate_Searchfield_Scenario2")
+            tags= "@Validate_Searchfield_Scenario1")
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 

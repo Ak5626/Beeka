@@ -1,6 +1,7 @@
 package utils;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -49,8 +50,22 @@ public class utility {
 
     public  static void action(WebElement element){
         Actions act = new Actions(driver);
-        act.moveToElement(element);
+        act.moveToElement(element).perform();
+    }
 
+    public  static void actionOnClick(WebElement element){
+        Actions act = new Actions(driver);
+        act.click(element).perform();
+    }
+
+    public  static void actionOnSendKeys(WebElement element,String text){
+        Actions act = new Actions(driver);
+        act.sendKeys(element,text).perform();
+    }
+
+    public  static void actionOnKeys(){
+        Actions act = new Actions(driver);
+        act.sendKeys(Keys.ENTER).perform();
     }
 
     public static void selectOption(WebElement element,String index){

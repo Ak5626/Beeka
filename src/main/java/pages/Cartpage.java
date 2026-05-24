@@ -7,7 +7,7 @@ import utils.utility;
 
 import java.util.List;
 
-import static pages.DriverFactory.driver;
+import static utils.DriverFactory.driver;
 
 public class Cartpage {
 

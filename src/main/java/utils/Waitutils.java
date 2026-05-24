@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 
-import static pages.DriverFactory.driver;
+import static utils.DriverFactory.driver;
 import static utils.utility.wait;
 
 public class Waitutils {

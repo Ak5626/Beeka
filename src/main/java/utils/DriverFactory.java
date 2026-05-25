@@ -6,7 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
-   public static WebDriver driver ;
+    public static ThreadLocal<WebDriver> tDriver =
+            new ThreadLocal<>();
 
     public static WebDriver initDriver(String browser) {
 
@@ -23,10 +24,10 @@ public class DriverFactory {
                         System.out.println("HEADLESS DRIVER ACTIVE");
                         System.out.println(options.asMap());
                     }
-                        driver = new ChromeDriver(options);
+                    tDriver.set(new ChromeDriver(options));
                         break;
                 case "firefox":
-                    driver = new FirefoxDriver();
+                    tDriver.set(new FirefoxDriver());
                     break;
 
                 default:
@@ -34,6 +35,15 @@ public class DriverFactory {
 
             }
 
-            return driver;
+            return getDriver();
         }
+
+    public static WebDriver getDriver() {
+        return tDriver.get();
+    }
+
+    public static void removeDriver() {
+        tDriver.remove();
+    }
+
 }

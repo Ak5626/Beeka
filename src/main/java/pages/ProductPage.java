@@ -1,16 +1,19 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import utils.DriverFactory;
 import utils.WaitUtils;
 import utils.Utility;
 
 import java.io.IOException;
 
-import static utils.DriverFactory.driver;
+
 import static pages.HomePage.*;
 
 public class ProductPage {
 
+    WebDriver driver = DriverFactory.getDriver();
     private static String prdName = Utility.getValue("product_name");
     private static String prdTitleInDutch = Utility.getValue("prdTitleInDutch");
     private static final By product = By.xpath("//a[@class='product-item__url' and @aria-label='" + prdName + "']");

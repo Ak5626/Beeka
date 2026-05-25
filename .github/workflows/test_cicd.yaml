@@ -25,10 +25,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '20'
+          java-version: '19'
 
       - name: Run Tests Headless
-        run: mvn clean test -Dheadless=true -Dcucumber.filter.tags="@Validate_Homepage" -e
+        run: mvn clean test -Dheadless=true -Ddataproviderthreadcount=1 -Dcucumber.filter.tags="@Validate_Homepage" -e
 
       - name: Upload Surefire Reports
         if: always()

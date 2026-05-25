@@ -28,7 +28,7 @@ jobs:
           java-version: '20'
 
       - name: Run Tests Headless
-        run: mvn clean test -Dheadless=true -Dcucumber.filter.tags="@Validate_Searchfield_Scenario1" -e
+        run: mvn clean test -Dheadless=true -Dcucumber.filter.tags="@Validate_Homepage" -e
 
       - name: Upload Surefire Reports
         if: always()

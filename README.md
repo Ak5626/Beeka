@@ -76,7 +76,9 @@ mvn test
 **5.Run Configuration**
 1. Using command line
 Go to project folder and open cmd then
-Use - > mvn test -Dheadless=false -Dcucumber.filter.tags="@tags"
+Use - > mvn test -Dheadless=false -Ddataproviderthreadcount=1 -Dcucumber.filter.tags="@tags"
+headless - false or true 
+Ddataproviderthreadcount - count should be given according to tags given in 'tags' parameter for parallel execution
 Examples - @Validate_Searchfield_Scenario1
 ![TestRunner.jpeg](Screenshots/TestRunner.jpeg)
 

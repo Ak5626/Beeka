@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -9,10 +10,10 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.FileReader;
 import java.util.NoSuchElementException;
 import java.util.Properties;
-import static utils.DriverFactory.driver;
+
 
 public class Utility {
-    static JavascriptExecutor js = (JavascriptExecutor) driver;
+
 
     public static String getValue(String key) {
         Properties prop = new Properties();
@@ -27,14 +28,22 @@ public class Utility {
         return prop.getProperty(key);
     }
 
+    public static WebDriver getDriver() {
+        return DriverFactory.getDriver();
+    }
+
+    public static JavascriptExecutor getJS() {
+        return (JavascriptExecutor) getDriver();
+    }
+
    public static void jsExecutorForScroll(WebElement element){
 
-       js.executeScript("arguments[0].scrollIntoView();",element);
+       getJS().executeScript("arguments[0].scrollIntoView();",element);
    }
 
     public static void jsExecutorForScrollUsingAxis(int x ,int y){
 
-        js.executeScript("window.scrollBy(arguments[0], arguments[1])",x,y);
+        getJS().executeScript("window.scrollBy(arguments[0], arguments[1])",x,y);
     }
 
     public static boolean ElePresent(WebElement ele){
@@ -45,24 +54,24 @@ public class Utility {
       }
     }
 
+    public static Actions getActions() {
+        return new Actions(getDriver());
+    }
+
     public  static void action(WebElement element){
-        Actions act = new Actions(driver);
-        act.moveToElement(element).perform();
+        getActions().moveToElement(element).perform();
     }
 
     public  static void actionOnClick(WebElement element){
-        Actions act = new Actions(driver);
-        act.click(element).perform();
+        getActions().click(element).perform();
     }
 
     public  static void actionOnSendKeys(WebElement element,String text){
-        Actions act = new Actions(driver);
-        act.sendKeys(element,text).perform();
+        getActions().sendKeys(element,text).perform();
     }
 
     public  static void actionOnKeys(){
-        Actions act = new Actions(driver);
-        act.sendKeys(Keys.ENTER).perform();
+        getActions().sendKeys(Keys.ENTER).perform();
     }
 
     public static void selectOption(WebElement element,String index){

@@ -1,17 +1,20 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.DriverFactory;
 import utils.WaitUtils;
 import utils.Utility;
 
 import java.util.List;
 
-import static utils.DriverFactory.driver;
+
 
 
 public class CategoryPage {
 
+    WebDriver driver = DriverFactory.getDriver();
     private static String mainCat = Utility.getValue("mainCat");
     private static String product = Utility.getValue("product");
 

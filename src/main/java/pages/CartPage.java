@@ -1,16 +1,19 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.DriverFactory;
 import utils.WaitUtils;
 import utils.Utility;
 
 import java.util.List;
 
-import static utils.DriverFactory.driver;
+//import static utils.DriverFactory.driver;
 
 public class CartPage {
 
+    WebDriver driver = DriverFactory.getDriver();
     private String beforeAddingQuantity=null;
     private String productName= null;
     private static String nameOfSelectOption = Utility.getValue("nameOfSelectOption");

@@ -1,16 +1,18 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.DriverFactory;
 import utils.WaitUtils;
 import utils.Utility;
 
 import java.util.List;
 
-import static utils.DriverFactory.driver;
 
 public class SearchPage {
 
+    WebDriver driver = DriverFactory.getDriver();
     private static final By searchField = By.xpath("//button[@data-modal-id='search-modal']");
     private static final By searchBar = By.xpath("//input[@type='search']");
     private static final By searchResults = By.xpath("//div[@class='search-results-wrapper']");

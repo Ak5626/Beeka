@@ -1,14 +1,16 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import utils.DriverFactory;
 import utils.WaitUtils;
 import utils.Utility;
 
 
-import static utils.DriverFactory.driver;
-
 
 public class HomePage {
+
+    WebDriver driver = DriverFactory.getDriver();
 
     public static String langConfirmation = null;
     public boolean logoVal;

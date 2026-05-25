@@ -13,7 +13,7 @@ import java.time.Duration;
 import static utils.DriverFactory.driver;
 
 
-public class Waitutils {
+public class WaitUtils {
 
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 

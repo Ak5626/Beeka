@@ -1,14 +1,14 @@
 package pages;
 
 import org.openqa.selenium.By;
-import utils.Waitutils;
-import utils.utility;
+import utils.WaitUtils;
+import utils.Utility;
 
 
 import static utils.DriverFactory.driver;
 
 
-public class homepage {
+public class HomePage {
 
     public static String langConfirmation = null;
     public boolean logoVal;
@@ -26,20 +26,20 @@ public class homepage {
     private static final By rejectPopUp1 = By.xpath("//button[@aria-label='Close dialog']");
 
     public void validateHomepage() {
-        Waitutils.waitCondForElementToClick(driver, driver.findElement(acceptCookies));
+        WaitUtils.waitCondForElementToClick(driver, driver.findElement(acceptCookies));
         driver.findElement(acceptCookies).click();
-        Waitutils.waitCondForElementToClick(driver, driver.findElement(rejectPopUp));
+        WaitUtils.waitCondForElementToClick(driver, driver.findElement(rejectPopUp));
         driver.findElement(rejectPopUp).click();
-        Waitutils.waitCondForElementToClick(driver, driver.findElement(rejectPopUp1));
+        WaitUtils.waitCondForElementToClick(driver, driver.findElement(rejectPopUp1));
         driver.findElement(rejectPopUp1).click();
         try {
-            if (utility.ElePresent(driver.findElement(engLang))) {
+            if (Utility.ElePresent(driver.findElement(engLang))) {
                 System.out.println("Homepage is loaded with Language \"English\"");
                 langConfirmation = "eng";
             }
         } catch (Exception e) {
             try {
-                if (utility.ElePresent(driver.findElement(dutchLang))) {
+                if (Utility.ElePresent(driver.findElement(dutchLang))) {
                     System.out.println("Homepage is loaded with Language \"Dutch\"");
                     langConfirmation = "dutch";
 
@@ -52,13 +52,13 @@ public class homepage {
 
 
     public boolean validateLogoHeader() {
-        logoVal = utility.ElePresent(driver.findElement(logo));
+        logoVal = Utility.ElePresent(driver.findElement(logo));
         return logoVal;
     }
 
     public boolean validateSwitchLanguage() {
 
-        Waitutils.waitCond(driver, driver.findElement(headerLangOpt));
+        WaitUtils.waitCond(driver, driver.findElement(headerLangOpt));
         driver.findElement(headerLangOpt).click();
         try {
             By changeLang;
@@ -78,8 +78,8 @@ public class homepage {
                 return false;
             }
             driver.findElement(changeLang).click();
-            Waitutils.waitCond(driver, driver.findElement(verifyLang));
-            boolean lang = utility.ElePresent(driver.findElement(verifyLang));
+            WaitUtils.waitCond(driver, driver.findElement(verifyLang));
+            boolean lang = Utility.ElePresent(driver.findElement(verifyLang));
             System.out.println(message);
             return lang;
         } catch (Exception e) {
@@ -88,8 +88,8 @@ public class homepage {
     }
 
     public boolean validateLogoFooter() {
-        utility.jsExecutorForScroll(driver.findElement(footerLogo));
-        logoVal = utility.ElePresent(driver.findElement(footerLogo));
+        Utility.jsExecutorForScroll(driver.findElement(footerLogo));
+        logoVal = Utility.ElePresent(driver.findElement(footerLogo));
         return logoVal;
     }
 

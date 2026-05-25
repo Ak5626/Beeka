@@ -1,15 +1,14 @@
 package Stepdefs;
 
 import Utils.Assertions;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Cartpage;
+import pages.CartPage;
 
-public class Cartstepdef {
+public class CartStepDef {
 
-    Cartpage cart = new Cartpage();
+    CartPage cart = new CartPage();
 
         @When("Homepage gets loaded click on cart menu in the header")
          public void Homepagegetsloadedclickoncartmenuintheheader(){
@@ -18,7 +17,7 @@ public class Cartstepdef {
 
     @Then("Validate empty cart message")
     public void validateEmptyCartMessageAndClickOnConitnueShopping() {
-        Assertions.comaprisonCheck(cart.checkCartMessage(),"Your cart is currently empty.");
+        Assertions.comparisonCheck(cart.checkCartMessage(),"Your cart is currently empty.");
     }
 
 
@@ -41,9 +40,9 @@ public class Cartstepdef {
     @Then("Click on view cart option and validate product name {string} quantity {string} variant {string} and price {string}")
     public void clickOnViewCartOptionAndValidateProductNameQuantityVariantAndPrice(String productName, String productQuan, String productVariant, String productPrice) {
         cart.clickOnViewCart();
-        Assertions.comaprisonCheck(cart.productName(),productName);
-        Assertions.comaprisonCheck(cart.productVariant(),productVariant);
-        Assertions.comaprisonCheck(cart.productQuantity(),productQuan);
+        Assertions.comparisonCheck(cart.productName(),productName);
+        Assertions.comparisonCheck(cart.productVariant(),productVariant);
+        Assertions.comparisonCheck(cart.productQuantity(),productQuan);
         Assertions.booleanCheck(cart.productPrice().contains(productPrice),"Price is not matched with expected value");
 
         }
@@ -51,7 +50,7 @@ public class Cartstepdef {
     @Then("Increase quantity in cart page and validate quantity value {string} and price {string}")
     public void increaseQuantityInCartPageAndValidateQuantityValueAndPrice(String increaseQuantity,String increasedPrice) {
         cart.increaseQuantity();
-        Assertions.comaprisonCheck(cart.productQuantity(),increaseQuantity);
+        Assertions.comparisonCheck(cart.productQuantity(),increaseQuantity);
         Assertions.booleanCheck(cart.productPrice().contains(increasedPrice),"Price is not matched with expected value");
 
     }
@@ -72,7 +71,7 @@ public class Cartstepdef {
 
     @Then("Validate product should be removed {string}")
     public void validateProductShouldBeRemoved(String message) {
-       Assertions.comaprisonCheck(cart.noProductShown(),message);
+       Assertions.comparisonCheck(cart.noProductShown(),message);
     }
 }
 

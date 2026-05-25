@@ -5,15 +5,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileReader;
-import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 import static utils.DriverFactory.driver;
 
-public class utility {
+public class Utility {
     static JavascriptExecutor js = (JavascriptExecutor) driver;
 
     public static String getValue(String key) {

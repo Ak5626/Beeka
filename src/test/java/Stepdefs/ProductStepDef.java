@@ -4,15 +4,15 @@ import Utils.Assertions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Productpage;
+import pages.ProductPage;
 
 import java.io.IOException;
 
-public class Productstepdef {
+public class ProductStepDef {
 
-    Productpage pg = new Productpage();
+    ProductPage pg = new ProductPage();
 
-    public Productstepdef() throws IOException {
+    public ProductStepDef() throws IOException {
     }
 
     @When("Homepage loaded choose a product")
@@ -29,9 +29,9 @@ public class Productstepdef {
     @And("Validate Product name {string} price {string} and description {string}")
     public void validateProductNamePriceAndDescription(String prdName,String prdPrice,String prdDescp) {
         String title = pg.checkProductTitle();
-        Assertions.comaprisonCheck(title,prdName);
+        Assertions.comparisonCheck(title,prdName);
         String price = pg.checkPrice();
-        Assertions.comaprisonCheck(price,prdPrice);
+        Assertions.comparisonCheck(price,prdPrice);
         String actualDesc= pg.checkDescription();
         Assertions.booleanCheck(actualDesc.contains(prdDescp),"Keywords are missing in description");
 
@@ -46,7 +46,7 @@ public class Productstepdef {
     @Then("Go to product page and validate price")
     public void goToProductPageAndValidatePrice() {
         String price = pg.checkPrice();
-        Assertions.comaprisonCheck(price,"€65,00");
+        Assertions.comparisonCheck(price,"€65,00");
     }
 
 

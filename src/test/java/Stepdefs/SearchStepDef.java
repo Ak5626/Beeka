@@ -1,14 +1,13 @@
 package Stepdefs;
 
 import Utils.Assertions;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Searchpage;
+import pages.SearchPage;
 
-public class Searchstepdef {
+public class SearchStepDef {
 
-    Searchpage sp = new Searchpage();
+    SearchPage sp = new SearchPage();
 
     @When("Homepage loaded click on search tab and search any valid product {string}")
     public void homepageLoadedClickOnSearchTabAndSearchAnyValidProduct(String product) {

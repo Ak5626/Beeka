@@ -1,18 +1,18 @@
 package pages;
 
 import org.openqa.selenium.By;
-import utils.Waitutils;
-import utils.utility;
+import utils.WaitUtils;
+import utils.Utility;
 
 import java.io.IOException;
 
 import static utils.DriverFactory.driver;
-import static pages.homepage.*;
+import static pages.HomePage.*;
 
-public class Productpage {
+public class ProductPage {
 
-    private static String prdName = utility.getValue("product_name");
-    private static String prdTitleInDutch = utility.getValue("prdTitleInDutch");
+    private static String prdName = Utility.getValue("product_name");
+    private static String prdTitleInDutch = Utility.getValue("prdTitleInDutch");
     private static final By product = By.xpath("//a[@class='product-item__url' and @aria-label='" + prdName + "']");
     private static final By productImage = By.xpath("//div[@data-index='0']/div/picture/img");
     private static final By productTitle = By.xpath("//h1[@class='product__title']");
@@ -22,18 +22,18 @@ public class Productpage {
     private static final By productTitleInD = By.xpath("//a[@aria-label='"+ prdTitleInDutch +"']");
     private static final By productPopUp = By.xpath("//div[@data-testid='modal-form-container']/button");
 
-    public Productpage() throws IOException {
+    public ProductPage() throws IOException {
     }
 
     public void moveToProduct() {
-        utility.jsExecutorForScrollUsingAxis(0,1500);
-        Waitutils.waitCond(driver, driver.findElement(product));
+        Utility.jsExecutorForScrollUsingAxis(0,1500);
+        WaitUtils.waitCond(driver, driver.findElement(product));
         driver.findElement(product).click();
 
     }
 
     public boolean productImage() {
-        return utility.ElePresent(driver.findElement(productImage));
+        return Utility.ElePresent(driver.findElement(productImage));
     }
 
     public String checkProductTitle() {
@@ -46,28 +46,28 @@ public class Productpage {
     }
 
     public String checkDescription() {
-        utility.jsExecutorForScroll(driver.findElement(productDesc));
-        Waitutils.waitCond(driver, driver.findElement(productDesc));
+        Utility.jsExecutorForScroll(driver.findElement(productDesc));
+        WaitUtils.waitCond(driver, driver.findElement(productDesc));
         driver.findElement(productDesc).click();
-        utility.jsExecutorForScroll(driver.findElement(productDescInDetail));
+        Utility.jsExecutorForScroll(driver.findElement(productDescInDetail));
         String detailedDesc = driver.findElement(productDescInDetail).getText();
         return detailedDesc.trim();
     }
 
     public void switchLanguage() {
-        Waitutils.waitCond(driver, driver.findElement(headerLangOpt));
+        WaitUtils.waitCond(driver, driver.findElement(headerLangOpt));
         driver.findElement(headerLangOpt).click();
         if (langConfirmation.equalsIgnoreCase("eng")) {
             try {
                 driver.findElement(changeOptToDutch).click();
-                Waitutils.waitCond(driver, driver.findElement(dutchLang));
+                WaitUtils.waitCond(driver, driver.findElement(dutchLang));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             System.out.println("Page is already switched to another language");
         }
-       utility.jsExecutorForScroll(driver.findElement(productTitleInD));
+       Utility.jsExecutorForScroll(driver.findElement(productTitleInD));
         driver.findElement(productTitleInD).click();
     }
 

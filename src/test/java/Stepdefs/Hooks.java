@@ -5,7 +5,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.DriverFactory;
-import utils.utility;
+import utils.Utility;
 
 import java.time.Duration;
 
@@ -17,8 +17,8 @@ public class Hooks {
     public void setup(Scenario scenario) throws Exception {
         System.out.println("Starting: " + scenario.getName());
         DriverFactory.initDriver("chrome");
-        if(utility.getValue("env").equalsIgnoreCase("prod")) {
-            driver.get(utility.getValue("eng_url"));
+        if(Utility.getValue("env").equalsIgnoreCase("prod")) {
+            driver.get(Utility.getValue("eng_url"));
             driver.manage().window().maximize();
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));

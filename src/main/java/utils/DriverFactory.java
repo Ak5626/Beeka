@@ -10,7 +10,7 @@ public class DriverFactory {
 
     public static WebDriver initDriver(String browser) {
 
-        boolean headless = Boolean.parseBoolean(System.getProperty("headless", utility.getValue("headless")));
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", Utility.getValue("headless")));
 
             switch (browser.toLowerCase()) {
                 case "chrome":

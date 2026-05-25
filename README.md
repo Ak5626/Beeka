@@ -78,6 +78,7 @@ mvn test
 Go to project folder and open cmd then
 Use - > mvn test -Dheadless=false -Dcucumber.filter.tags="@tags"
 Examples - @Validate_Searchfield_Scenario1
+![TestRunner.jpeg](Screenshots/TestRunner.jpeg)
 
 
 2. Feature file

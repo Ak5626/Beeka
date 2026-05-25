@@ -4,12 +4,13 @@ import Utils.Assertions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.WebDriver;
 import utils.DriverFactory;
 import utils.Utility;
 
 import java.time.Duration;
 
-import static utils.DriverFactory.driver;
+//import static utils.DriverFactory.driver;
 
 public class Hooks {
 
@@ -18,10 +19,10 @@ public class Hooks {
         System.out.println("Starting: " + scenario.getName());
         DriverFactory.initDriver("chrome");
         if(Utility.getValue("env").equalsIgnoreCase("prod")) {
-            driver.get(Utility.getValue("eng_url"));
-            driver.manage().window().maximize();
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+            DriverFactory.getDriver().get(Utility.getValue("eng_url"));
+            DriverFactory.getDriver().manage().window().maximize();
+            DriverFactory.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+            DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }else{
             System.out.println("No environment found");
         }
@@ -31,8 +32,12 @@ public class Hooks {
     @After
     public void tearDown(){
         Assertions.assertAll();
-        if (DriverFactory.driver != null) {
-            driver.quit();
+
+        WebDriver driver = DriverFactory.getDriver();
+
+        if (DriverFactory.getDriver()!= null) {
+            DriverFactory.getDriver().quit();
+            DriverFactory.removeDriver();
         }
     }
 }

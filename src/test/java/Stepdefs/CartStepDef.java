@@ -1,15 +1,14 @@
 package Stepdefs;
 
 import Utils.Assertions;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Cartpage;
+import pages.CartPage;
 
-public class Cartstepdef {
+public class CartStepDef {
 
-    Cartpage cart = new Cartpage();
+    CartPage cart = new CartPage();
 
         @When("Homepage gets loaded click on cart menu in the header")
          public void Homepagegetsloadedclickoncartmenuintheheader(){

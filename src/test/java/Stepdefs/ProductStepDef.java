@@ -4,15 +4,15 @@ import Utils.Assertions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Productpage;
+import pages.ProductPage;
 
 import java.io.IOException;
 
-public class Productstepdef {
+public class ProductStepDef {
 
-    Productpage pg = new Productpage();
+    ProductPage pg = new ProductPage();
 
-    public Productstepdef() throws IOException {
+    public ProductStepDef() throws IOException {
     }
 
     @When("Homepage loaded choose a product")

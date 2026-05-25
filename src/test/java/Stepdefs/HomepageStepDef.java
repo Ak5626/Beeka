@@ -1,15 +1,14 @@
 package Stepdefs;
 
 import Utils.Assertions;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import pages.homepage;
+import pages.HomePage;
 
-public class HomepageStepdef {
+public class HomepageStepDef {
 
-    homepage hp = new homepage();
+    HomePage hp = new HomePage();
 
     @Given("Navigate to homepage")
     public void navigate_to_homepage() {

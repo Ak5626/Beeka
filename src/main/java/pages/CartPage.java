@@ -2,18 +2,18 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.Waitutils;
-import utils.utility;
+import utils.WaitUtils;
+import utils.Utility;
 
 import java.util.List;
 
 import static utils.DriverFactory.driver;
 
-public class Cartpage {
+public class CartPage {
 
     private String beforeAddingQuantity=null;
     private String productName= null;
-    private static String nameOfSelectOption = utility.getValue("nameOfSelectOption");
+    private static String nameOfSelectOption = Utility.getValue("nameOfSelectOption");
     private static final By cartOption = By.xpath("//li[@class='aside-nav__list-item']/a[@data-modal-id='cart-modal']");
     private static final By cartMessage = By.xpath("//div[@id='cart-container']/p");
     private static final By continueShopping = By.xpath("//button[@class='button js-modal-close']");
@@ -32,12 +32,12 @@ public class Cartpage {
     private static final By cartEmpty = By.xpath("//div[@class='container js-cart-container']/p[1]");
 
     public void clickCartOption(){
-        Waitutils.waitCond(driver,driver.findElement(cartOption));
+        WaitUtils.waitCond(driver,driver.findElement(cartOption));
         driver.findElement(cartOption).click();
     }
 
     public String checkCartMessage(){
-        Waitutils.waitCond(driver,driver.findElement(cartMessage));
+        WaitUtils.waitCond(driver,driver.findElement(cartMessage));
         return driver.findElement(cartMessage).getText();
     }
 
@@ -47,14 +47,14 @@ public class Cartpage {
 
     public void goToProduct(String Product) {
         driver.navigate().refresh();
-        utility.jsExecutorForScrollUsingAxis(0, 1500);
+        Utility.jsExecutorForScrollUsingAxis(0, 1500);
         List<WebElement> products = driver.findElements(goToProduct);
         Product = Product.toLowerCase().trim().replaceAll(" ","");
         String actualPrd = null;
         for (WebElement prd : products) {
             actualPrd = prd.getText().toLowerCase().trim().replaceAll(" ","");
             if (Product.contains(actualPrd)) {
-                utility.action(prd);
+                Utility.action(prd);
                 List<WebElement> carts = driver.findElements(clickCart);
                 for (WebElement c : carts) {
                     c.click();
@@ -66,18 +66,18 @@ public class Cartpage {
     }
 
         public void selectDiameterAndClickQuickAddOption(String index) {
-                 utility.selectOption(driver.findElement(selectDiameter),index);
+                 Utility.selectOption(driver.findElement(selectDiameter),index);
                  List<WebElement> add = driver.findElements(quickAdd);
                  for(WebElement qcAdd : add){
                      qcAdd.click();
-                     Waitutils.waitCond(driver, driver.findElement(rejectPopUp));
+                     WaitUtils.waitCond(driver, driver.findElement(rejectPopUp));
                      driver.findElement(rejectPopUp).click();
                      break;
                  }
         }
 
         public void clickOnViewCart(){
-              Waitutils.waitCond(driver,driver.findElement(viewCart));
+              WaitUtils.waitCond(driver,driver.findElement(viewCart));
               driver.findElement(viewCart).click();
         }
 
@@ -101,7 +101,7 @@ public class Cartpage {
 
         public void increaseQuantity(){
              driver.findElement(increaseQuantity).click();
-             Waitutils.waitCondForInvisibleText(productPriceInCart,beforeAddingQuantity);
+             WaitUtils.waitCondForInvisibleText(productPriceInCart,beforeAddingQuantity);
         }
 
         public void deleteProduct() {
@@ -119,7 +119,7 @@ public class Cartpage {
 
         public String noProductShown(){
             driver.navigate().refresh();
-            Waitutils.waitCond(driver,driver.findElement(cartEmpty));
+            WaitUtils.waitCond(driver,driver.findElement(cartEmpty));
             return driver.findElement(cartEmpty).getText();
         }
 

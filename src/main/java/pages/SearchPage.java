@@ -1,17 +1,15 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
-import utils.Waitutils;
-import utils.utility;
+import utils.WaitUtils;
+import utils.Utility;
 
 import java.util.List;
 
 import static utils.DriverFactory.driver;
 
-public class Searchpage {
+public class SearchPage {
 
     private static final By searchField = By.xpath("//button[@data-modal-id='search-modal']");
     private static final By searchBar = By.xpath("//input[@type='search']");
@@ -19,14 +17,14 @@ public class Searchpage {
     private static final By searchresultsNotFound=By.xpath("//div[@class='search-results-wrapper']/div/div/div/h2/a");
 
     public void searchProduct(String product){
-        Waitutils.waitElementClickable(driver.findElement(searchField));
+        WaitUtils.waitElementClickable(driver.findElement(searchField));
         driver.findElement(searchField).click();
         List<WebElement> src = driver.findElements(searchBar);
         for(WebElement e: src){
-            utility.action(e);
-            utility.actionOnClick(e);
-            utility.actionOnSendKeys(e,product);
-            utility.actionOnKeys();
+            Utility.action(e);
+            Utility.actionOnClick(e);
+            Utility.actionOnSendKeys(e,product);
+            Utility.actionOnKeys();
             break;
         }
 

@@ -1,15 +1,14 @@
 package Stepdefs;
 
 import Utils.Assertions;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Categorypage;
+import pages.CategoryPage;
 
-public class Categorystepdef {
+public class CategoryStepDef {
 
-    Categorypage cp = new Categorypage();
+    CategoryPage cp = new CategoryPage();
 
     @When("Homepage gets loaded click on main category {string}")
     public void Homepagegetsloadedclickonmaincategory(String mainCat) {

@@ -6,7 +6,7 @@ public class Assertions {
 
     static SoftAssert ast = new SoftAssert();
 
-    public static void comaprisonCheck(String actual,String expected){
+    public static void comparisonCheck(String actual,String expected){
         ast.assertEquals(actual,expected);
 
 
